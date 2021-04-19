@@ -1,2 +1,2 @@
 # MobileAwendung
-Tourism Cross-Platform Mobile App
+Tourism Cross-Platform Mobile App für Mobile Anwendungen
