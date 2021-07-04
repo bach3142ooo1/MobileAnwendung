@@ -42,9 +42,11 @@ class _SportonaHomePageState extends State<SportonaHomePage> {
           view: CalendarView.month,
           onTap: (calendarTapDetails) {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return VeranstaltungAnlegen();
+              print(calendarTapDetails.date);
+              return VeranstaltungAnlegen(calendarTapDetails.date);
             }));
           },
-        ));
+        )
+      );
   }
 }
