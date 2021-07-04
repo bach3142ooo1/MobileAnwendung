@@ -202,6 +202,12 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
             veranstaltung.ziel +
             '&zoom_link=' +
             veranstaltung.zoomLink));
+
+    if (_response.statusCode == 200) {
+      return _response.body;
+    } else {
+      throw Exception('Fehler beim Anlegen');
+    }
   }
 
   bool validateZoomlink(String zoomLink) {
