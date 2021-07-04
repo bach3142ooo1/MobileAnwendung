@@ -44,7 +44,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         decoration: InputDecoration(
             hintText: 'Bitte maximale Teilnehmeranzahl eingeben',
             labelText: 'Max. Teilnehmeranzahl'),
-        controller: _titelController,
+        controller: _teilnehmerAnzahlController,
         enabled: true);
   }
 
@@ -62,7 +62,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         decoration: InputDecoration(
             hintText: 'Bitte Uhrzeit eingeben (HH:MM-HH:MM)',
             labelText: 'Uhrzeit'),
-        controller: _titelController,
+        controller: _uhrzeitController,
         enabled: true);
   }
 
@@ -90,7 +90,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         decoration: InputDecoration(
             hintText: 'Bitte Beschreibung zur Veranstaltung eingeben',
             labelText: 'Beschreibung'),
-        controller: _titelController,
+        controller: _beschreibungController,
         enabled: true);
   }
 
@@ -101,7 +101,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         decoration: InputDecoration(
             hintText: 'Bitte Zoom-Link zur Veranstaltung eingeben',
             labelText: 'Zoom-Link'),
-        controller: _titelController,
+        controller: _zoomLinkController,
         enabled: true);
   }
 
@@ -126,7 +126,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
               ElevatedButton(
                 child: Text(
                   "Submit",
-                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                  style: TextStyle(color: Colors.teal, fontSize: 16),
                 ),
                 onPressed: () {
                   saveVeranstaltung();
