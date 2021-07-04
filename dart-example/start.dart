@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app1/screens/suchen.dart';
-import 'package:flutter_app1/screens/anlegen.dart';
+
+import 'anlegen.dart';
+import 'suchen.dart';
 
 class SplashScreen extends StatelessWidget {
 

@@ -1,13 +1,15 @@
+
 import 'package:flutter/material.dart';
 import 'package:mobile_anwendungen_flutter/VeranstaltungAnlegen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'global.dart' as global;
 
 void main() {
+  global.benutzerID = "52257ef3-a9d8-464f-afd8-1f2d0d484ff6";
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,19 +36,15 @@ class _SportonaHomePageState extends State<SportonaHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
         body: SfCalendar(
           view: CalendarView.month,
           onTap: (calendarTapDetails) {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              print(calendarTapDetails.date);
               return VeranstaltungAnlegen(calendarTapDetails.date);
             }));
           },
-        )
-      );
+        ));
   }
 }
