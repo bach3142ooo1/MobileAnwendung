@@ -5,7 +5,7 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 Database - H2
 1. Install H2
 2. Create local H2 Database
-3. Create Table using the existing Script
+3. Create Table using the existing Script (SQL-init.txt)
 
 Server
 1. Install TomCat 9
