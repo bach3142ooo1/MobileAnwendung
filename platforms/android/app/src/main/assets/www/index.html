@@ -35,6 +35,9 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
+        <script src="js/main.js"></script>
+        <script src="js/index.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Sportana</title>
     </head>
     <body>
@@ -97,19 +100,32 @@
                     </label>      
                 </div>
                 
+                 <div style="margin-top: 20px;">
+                    <label for=anzahl style="color: black;">
+                            Teilnehmeranzahl:<br>
+                        <input id="anzahl" type="number" min="1" max="300" step="1" value="0">
+                        
+                    </label>
+                </div>
                 
                 <div style="margin-top: 20px;">
                     <label for="beschreibung" style="color: black;">
                         Beschreibung:<br>
                         
-                    <textarea rows="5" cols="50" name="beschreibung" id="beschreibung"></textarea>
+                    <textarea rows="5" name="beschreibung" id="beschreibung"></textarea>
                     
                     </label>      
                 </div>
                 
+                <div style="margin-top: 20px;">
+                    <label for="homepage" style="color: black;">Zoom Link:<br>
+                        <input type="url" id="link" name="link">
+                    </label>
+                </div>
+                
                 <div class="buttondiv">
-                    <button class="b1">Veranstaltung anlegen</button>
-                     <button class="b1">Zum Kalender hinzufügen</button>
+                    <button id="b1" onclick="evento();">Veranstaltung anlegen</button>
+                     <button id="b2">Zum Kalender hinzufügen</button>
                 </div>
                 
             </div>
@@ -141,7 +157,9 @@
             
         </div>
         
-        
+        <script>
+
+        </script>
         
         
         

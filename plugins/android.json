@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.MyFirstApp"
+    },
+    "cordova-plugin-calendar": {
+      "PACKAGE_NAME": "com.example.MyFirstApp"
     }
   },
   "dependent_plugins": {}
