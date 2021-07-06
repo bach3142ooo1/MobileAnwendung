@@ -6,6 +6,7 @@ import 'dart:async';
 
 class VeranstaltungAnlegen extends StatefulWidget {
   DateTime _datum;
+
   VeranstaltungAnlegen(DateTime date) {
     this._datum = date;
   }
@@ -120,7 +121,8 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         appBar: AppBar(title: Text("Veranstaltung Anlegen")),
         body: Container(
           margin: EdgeInsets.all(24),
-          child: Column(
+          child: SingleChildScrollView(
+              child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildTitel(),
@@ -141,7 +143,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
                 },
               )
             ],
-          ),
+          )),
         ));
   }
 
