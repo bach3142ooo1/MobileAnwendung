@@ -1,8 +1,11 @@
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_anwendungen_flutter/Veranstaltung.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:add_2_calendar/add_2_calendar.dart';
 
 class VeranstaltungAnlegen extends StatefulWidget {
   DateTime _datum;
@@ -13,13 +16,16 @@ class VeranstaltungAnlegen extends StatefulWidget {
 
   @override
   _VeranstaltungAnlegenState createState() =>
-      _VeranstaltungAnlegenState(datum: _datum);
+      _VeranstaltungAnlegenState(_datum);
 }
 
 class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
-  _VeranstaltungAnlegenState({this.datum}) : super();
+  _VeranstaltungAnlegenState(DateTime datum)
+  {
+    this.datum = datum;
+  }
 
-  final DateTime datum;
+  DateTime datum;
 
   final _titelController = TextEditingController();
   final _teilnehmerAnzahlController = TextEditingController();
@@ -135,27 +141,46 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
               SizedBox(height: 100),
               ElevatedButton(
                 child: Text(
-                  "Submit",
+                  "Anlegen",
                   style: TextStyle(color: Colors.blue, fontSize: 16),
                 ),
                 onPressed: () {
-                  saveVeranstaltung();
+                  speichernVeranstaltung();
                 },
+              ),
+              ElevatedButton(
+                child:Text(
+                  "Lokal speichern",
+                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                ),
+                  onPressed: () async{
+                    DateTime startDate = DateTime.parse(datum.toString().substring(0,10) + " " +_uhrzeitController.text.substring(0,5));
+                    DateTime endDate = DateTime.parse(datum.toString().substring(0,10) + " " +_uhrzeitController.text.substring(6,11));
+                    Event event = Event(
+                      title: _titelController.text,
+                      description: _beschreibungController.text,
+                      startDate: startDate,
+                      location: _zoomLinkController.text,
+                      endDate: endDate
+                    );
+                    Add2Calendar.addEvent2Cal(event);
+                  }
               )
             ],
           )),
         ));
   }
 
-  saveVeranstaltung() {
+
+
+
+  speichernVeranstaltung() {
     int teilnehmerAnzahl = int.tryParse(_teilnehmerAnzahlController.text) ?? 0;
     if (teilnehmerAnzahl == 0) {
-      warnungAnzeigen("Teilnehmeranzahl");
+      dialogAnzeigen("Validierung","Falscher Format der Teilnehmeranzahl");
     } else if (!validateUhrzeit(_uhrzeitController.text)) {
-      warnungAnzeigen("Uhrzeit");
-    } else if (!validateZoomlink(_zoomLinkController.text)) {
-      warnungAnzeigen("Zoomlink");
-    } else {
+      dialogAnzeigen("Validierung","Falscher Format der Uhrzeit");
+    }  else {
       Veranstaltung veranstaltung = Veranstaltung(
         titel: _titelController.text,
         teilnehmeranzahl: int.parse(_teilnehmerAnzahlController.text),
@@ -166,17 +191,17 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         zoomLink: _zoomLinkController.text,
         datum: datum,
       );
+      _saveVeranstaltung(veranstaltung);
     }
 
-    // Future<String> futureVeranstaltung = _saveVeranstaltung(veranstaltung);
   }
 
-  Future<dynamic> warnungAnzeigen(String eingabeFeld) {
+  Future<dynamic> dialogAnzeigen(String title,String text) {
     return showDialog(
         context: context,
         builder: (_) => AlertDialog(
-              title: Text("Validierung"),
-              content: Text("Die Eingabe für $eingabeFeld ist nicht gültig"),
+              title: Text(title),
+              content: Text(text),
               actions: [
                 CupertinoDialogAction(
                     child: Text("Ok"), onPressed: () => Navigator.pop(context))
@@ -185,8 +210,17 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
   }
 
   Future<String> _saveVeranstaltung(Veranstaltung veranstaltung) async {
-    final _response = await http.get(
-        Uri.parse('localhost:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
+    String header;
+    if(kIsWeb){
+      header = "localhost";
+    }
+    else if(Platform.isAndroid){
+      header = "10.0.2.2";
+    }else{
+      header = "localhost";
+    }
+    var _response = await http.get(
+        Uri.parse('http://$header:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
             'benutzerId=52257ef3-a9d8-464f-afd8-1f2d0d484ff6&'
                 'titel=' +
             veranstaltung.titel +
@@ -206,15 +240,11 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
             veranstaltung.zoomLink));
 
     if (_response.statusCode == 200) {
+      dialogAnzeigen("Status", "Erfolgreich angelegt");
       return _response.body;
     } else {
-      throw Exception('Fehler beim Anlegen');
+      dialogAnzeigen("Status", "Fehler beim Anlegen");
     }
-  }
-
-  bool validateZoomlink(String zoomLink) {
-    var regexZoomLink = RegExp(r'[a-z]+\.zoom\.[a-z]{2,3}\/');
-    return regexZoomLink.hasMatch(zoomLink);
   }
 
   bool validateUhrzeit(String uhrzeit) {
