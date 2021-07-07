@@ -29,15 +29,12 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js  http://localhost:8081/Weblexikon_Server/* 'unsafe-eval' "> -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
-        <script src="js/main.js"></script>
-        <script src="js/index.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Sportana</title>
     </head>
     <body>
@@ -79,9 +76,12 @@
                 <div style="margin-top: 20px;">
                     <label for="time" style="color: black;">
                         Uhrzeit:<br>
-                    
-                    <input type="time" name="uhrzeit" value="" id="time">
-                    
+                    <div>
+                        <input id="beginAt" type="time" name="uhrzeit" value="" >
+                        <p style="display: inline;">bis </p>
+                        <input id="endAt" type="time" name="uhrzeit" value="">
+                    </div>
+                                        
                     </label>      
                 </div>
                 
@@ -91,20 +91,26 @@
                     
                     <select name="grad" id="grad">
                     
-                        <option value="leicht">Leicht</option>
-                        <option value="leicht">Mittel</option>
-                        <option value="leicht">Schwer</option>
+                        <option value="0">Leicht</option>
+                        <option value="1">Mittel</option>
+                        <option value="2">Schwer</option>
                         
                     </select>
                     
                     </label>      
                 </div>
                 
-                 <div style="margin-top: 20px;">
+                <div style="margin-top: 20px;">
                     <label for=anzahl style="color: black;">
                             Teilnehmeranzahl:<br>
                         <input id="anzahl" type="number" min="1" max="300" step="1" value="0">
-                        
+                    </label>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <label for=anzahl style="color: black;">
+                            Ziel:<br>
+                        <input id="ziel" type="text">
                     </label>
                 </div>
                 
@@ -125,7 +131,7 @@
                 
                 <div class="buttondiv">
                     <button id="b1" onclick="evento();">Veranstaltung anlegen</button>
-                     <button id="b2">Zum Kalender hinzufügen</button>
+                     <button id="b2" onclick="evento();">Zum Kalender hinzufügen</button>
                 </div>
                 
             </div>
@@ -134,22 +140,22 @@
                 <div class="bottombar">
                 
                     <div style="text-align: center;">
-                        <img src="img/hantel.png" style="heigt: 30px; width: 30px;">
+                        <img src="img/hantel.png" style="height: 30px; width: 30px;">
                         <p>Kurse</p>       
                     </div>
                 
                     <div style="text-align: center;">
-                        <img src="img/kalender.png" style="heigt: 30px; width: 30px;">
+                        <img src="img/kalender.png" style="height: 30px; width: 30px;">
                         <p>Kalender</p>       
                     </div>
                 
                     <div style="text-align: center;">
-                        <img src="img/cam.png" style="heigt: 30px; width: 30px;">
+                        <img src="img/cam.png" style="height: 30px; width: 30px;">
                         <p>Zoom</p>       
                     </div>
                 
                     <div style="text-align: center;">
-                        <img src="img/person.png" style="heigt: 30px; width: 30px;">
+                        <img src="img/person.png" style="height: 30px; width: 30px;">
                         <p>Konto</p>       
                     </div>
                 </div>
@@ -160,9 +166,8 @@
         <script>
 
         </script>
-        
-        
-        
+    
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
     </body>
