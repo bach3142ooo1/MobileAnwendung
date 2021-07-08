@@ -20,7 +20,7 @@
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
-
+req = xhttp = new XMLHttpRequest();
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
@@ -30,26 +30,20 @@ function onDeviceReady() {
 
 
 document.getElementById("b2").onclick = function (){
-    var date = document.getElementById("Datum").value + " " + document.getElementById("time").value;
-   
-    
-    var year = date.substring(0,4);
-    var month = date.substring(5,7);
-    var month2 = month-1;
-    var day = date.substring(8,10);
-    var time1 = date.substring(11,13);
-    var time2 =  date.substring(14,16); 
-    
-    
-  var startDate = new Date(year,month2,day,time1,time2,0,0,0); // beware: month 0 = january, 11 = december
-  var title = document.getElementById("name").value;
-  var endDate = new Date(2015,2,15,19,30,0,0,0);
-  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-  var error = function(message) { alert("Error: " + message); };
-  var eventLocation = "";
-  var notes = "Some notes about this event.";
+    var title = document.getElementById("name").value;
+    var date = document.getElementById("Datum").value;
+    var beginAt = document.getElementById("beginAt").value;
+    var endAt = document.getElementById("endAt").value;
+    var eventLocation = document.getElementById("link").value;
+    var beschreibung = document.getElementById("beschreibung").value;
 
- window.plugins.calendar.createEventInteractively(title,eventLocation,notes,startDate,endDate,success,error);
+    var startTime = new Date(date + " " + beginAt); 
+    var endTime = new Date(date + " " + endAt);
+
+    var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+    var error = function(message) { alert("Error: " + message); };
+    
+    window.plugins.calendar.createEventInteractively(title,eventLocation,beschreibung,startTime,endTime,success,error);
 }
 
 
@@ -58,25 +52,42 @@ document.getElementById("b2").onclick = function (){
 
 document.getElementById("b1").onclick = function (){
     
-var title = document.getElementById("name").value;
-var teilnehmeranzahl = document.getElementById("anzahl").value;
-var uhrzeit = document.getElementById("time").value;
-var datum = document.getElementById("Datum").value;
-var stufe = document.getElementById("grad").value;
-var beschreibung = document.getElementById("beschreibung").value;
-var zoomlink = document.getElementById("link").value;
-var ziel = "null";
-var benutzerId = "52257ef3-a9d8-464f-afd8-1f2d0d484ff6";
-              
-    $.ajax({
-        type: 'POST',
-  		url: 'localhost:8081/Weblexikon_Server/VeranstaltungAnlegen',
-  		data: {'benutzerId': benutzerId, 'title': title, 'teilnehmeranzahl':teilnehmeranzahl, 'uhrzeit':uhrzeit, 'datum': datum, 'stufe': stufe, 'beschreibung': beschreibung, 'ziel': null, 'zoom_link': zoomlink},
-  		success: function(data) {
-   			alert(data);
-  			}
-			
-    });
+    var title = document.getElementById("name").value;
+    var teilnehmeranzahl = document.getElementById("anzahl").value;
+    var beginAt = document.getElementById("beginAt").value;
+    var endAt = document.getElementById("endAt").value;
+    var datum = document.getElementById("Datum").value;
+    var stufe = document.getElementById("grad").value;
+    var beschreibung = document.getElementById("beschreibung").value;
+    var zoomlink = document.getElementById("link").value;
+    var ziel = document.getElementById("ziel").value;
+    var benutzerId = "52257ef3-a9d8-464f-afd8-1f2d0d484ff6";
+    console.log(benutzerId);
+    
+    var url ='http://10.0.2.2:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
+                'benutzerId=' + benutzerId +
+                '&titel=' +title +
+                '&teilnehmeranzahl=' + teilnehmeranzahl +
+                '&uhrzeit=' + beginAt + "-" + endAt +
+                '&datum=' +datum +
+                '&stufe=' + stufe +
+                '&beschreibung=' + beschreibung +
+                '&ziel=' + ziel +
+                '&zoom_link=' + zoomlink;
+    console.log(url);
+    req.open('GET',url,true);
+    req.send(null);
+    req.onreadystatechange = () => {
+        if(req.readyState == 4 && req.status == 200)
+        {
+            alert("Success")
+        }else if(req.readyState == 4 && req.status!=200)
+        {
+            alert("Not Success");
+        }
+    }
+
+   
     
 }
 

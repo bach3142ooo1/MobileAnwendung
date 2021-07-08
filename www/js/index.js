@@ -64,26 +64,30 @@ document.getElementById("b1").onclick = function (){
     var benutzerId = "52257ef3-a9d8-464f-afd8-1f2d0d484ff6";
     console.log(benutzerId);
     
-    $.ajax({
-        type: 'POST',
-  		url: 'http://localhost:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
-          'benutzerId=' + benutzerId +
-          '&titel=' +title +
-          '&teilnehmeranzahl=' + teilnehmeranzahl +
-          '&uhrzeit=' + beginAt + "-" + endAt +
-          '&datum=' +datum +
-          '&stufe=' + stufe +
-          '&beschreibung=' + beschreibung +
-          '&ziel=' + ziel +
-          '&zoom_link=' + zoomlink,
-        dataType: "jsonp",
-        crossDomain: true,
-  		success: function(data) {
-   			alert(data);
-  		},
-        
-			
-    });
+    var url ='http://10.0.2.2:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
+                'benutzerId=' + benutzerId +
+                '&titel=' +title +
+                '&teilnehmeranzahl=' + teilnehmeranzahl +
+                '&uhrzeit=' + beginAt + "-" + endAt +
+                '&datum=' +datum +
+                '&stufe=' + stufe +
+                '&beschreibung=' + beschreibung +
+                '&ziel=' + ziel +
+                '&zoom_link=' + zoomlink;
+    console.log(url);
+    req.open('GET',url,true);
+    req.send(null);
+    req.onreadystatechange = () => {
+        if(req.readyState == 4 && req.status == 200)
+        {
+            alert("Success")
+        }else if(req.readyState == 4 && req.status!=200)
+        {
+            alert("Not Success");
+        }
+    }
+
+   
     
 }
 
