@@ -16,16 +16,18 @@ Server
 6. Launch the imported WAR as Tomcat Server in Eclipse
 
 ## Cordova
-1. import/open cordova Project
-2. install dependencies using ```npm install```
-3. add platform using ``` cordova platform add android``` or ``` cordova platform add browser```
-4. run cordova app using ```cordova run android``` or ```cordova run browser```
+1. install cordova using ```npm install -g cordova```
+2. import/open cordova Project
+3. install dependencies using ```npm install```
+4. add platform using ``` cordova platform add android``` or ``` cordova platform add browser```
+5. run cordova app using ```cordova run android``` or ```cordova run browser```
 
 ## Flutter
-1. import/open flutter Project
-2. install dependencies using ```flutter pub add get```
-3. Select desired platform (recommended: API 29)
-4. Press run in Android Studio
+1. install [flutter](https://flutter.dev/docs/get-started/install/windows) and add flutter to environment variables
+2. import/open flutter Project
+3. install dependencies using ```flutter pub add get```
+4. Select desired platform (recommended: API 29)
+5. Press run in Android Studio
 
 ## Known issues
 - Ensure that H2 is closed when running TomCat and executing requests
