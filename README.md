@@ -1,4 +1,4 @@
-# MobileAwendung
+# MobileAnwendung
 Sport Cross-Platform Mobile App für Mobile Anwendungen
 
 ## Before you start
