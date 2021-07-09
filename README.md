@@ -26,3 +26,8 @@ Server
 2. install dependencies using ```flutter pub add get```
 3. Select desired platform (recommended: API 29)
 4. Press run in Android Studio
+
+## Known issues
+- Ensure that H2 is closed when running TomCat and executing requests
+- Ensure that Android SDK Version matches Cordova Version
+- Eclipse Enterprise Edition doesn't support Java Version 8
