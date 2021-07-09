@@ -14,4 +14,4 @@ Server
 4. Change the references of the EintragDAO File to local H2 Database
 5. (Optional) Setup Tomcat Ports to avoid getting used ports error
 6. Launch the imported WAR as Server in Eclipse
-7. Run the desired HTTP-Requests (AJAX) using localhost - Example Request in WhatsApp
+7. Run the desired HTTP-Request in the chosen Framwork
