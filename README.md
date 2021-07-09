@@ -29,6 +29,6 @@ Server
 
 ## Known issues
 - Ensure that H2 is closed when running TomCat and executing requests
-- Ensure that Android SDK Version matches Cordova Version
+- Ensure that Android SDK Version matches Gradle Version
 - Ensure that you're running TomCat version 9
 - Eclipse Enterprise Edition doesn't support Java Version 8
