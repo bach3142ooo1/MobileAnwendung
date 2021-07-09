@@ -6,7 +6,7 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 2. Install [TomCat 9](https://tomcat.apache.org/download-90.cgi)
 3. Install [Flutter](https://flutter.dev/docs/get-started/install/windows) and add flutter to environment variables
 4. Install [Node](https://nodejs.org/de/download/) (required to install node packages/modules)
-5. Install [Cordova](https://cordova.apache.org/) using ```npm install -g cordova```
+5. Install [Cordova](https://cordova.apache.org/) using ```npm install -g cordova``` (Make sure you've installed Node first!)
 6. Install [Gradle](https://gradle.org/install/) and add gradle to environment variables
 7. Install [Eclipse Enterprise Edition](https://www.eclipse.org/downloads/packages/release/kepler/sr2/eclipse-ide-java-ee-developers) (Normal Edition doesn't support servers!)
 8. Install [Android Studio](https://developer.android.com/studio) or Text Editor of your choice
