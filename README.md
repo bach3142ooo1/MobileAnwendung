@@ -17,7 +17,7 @@ Server
 
 ## Cordova
 1. import/open cordova Project
-2. run ```npm install```
+2. install dependencies using ```npm install```
 3. add platform using ``` cordova platform add android``` or ``` cordova platform add browser```
 4. run cordova app using ```cordova run android``` or ```cordova run browser```
 
