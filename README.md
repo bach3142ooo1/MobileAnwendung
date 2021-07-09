@@ -10,7 +10,7 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 6. Install [Eclipse Enterprise Edition](https://www.eclipse.org/downloads/packages/release/kepler/sr2/eclipse-ide-java-ee-developers) (Normal Edition doesn't support servers!)
 7. Install [Android Studio](https://developer.android.com/studio) or Text Editor of your choice
 
-## Launching APP - Requirements - In Construction
+## Launching APP - Prerequisites
 Database - H2
 1. Create local H2 Database
 2. Create Table using the existing Script (SQL-init.txt)
