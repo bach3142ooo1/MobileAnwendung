@@ -4,8 +4,8 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 ## Before you start
 1. Install [H2](https://www.h2database.com/html/download.html)
 2. Install [TomCat 9](https://tomcat.apache.org/download-90.cgi)
-3. Install [flutter](https://flutter.dev/docs/get-started/install/windows) and add flutter to environment variables
-4. Install cordova using ```npm install -g cordova```
+3. Install [Flutter](https://flutter.dev/docs/get-started/install/windows) and add flutter to environment variables
+4. Install Cordova using ```npm install -g cordova```
 5. Install [Gradle](https://gradle.org/install/) and add gradle to environment variables
 6. Install Eclipse Enterprise Edition (Normal Edition doesn't support servers!)
 7. Install Android Studio or Text Editor of your choice
