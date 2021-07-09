@@ -3,12 +3,12 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 
 ## Launching APP - Requirements - In Construction
 Database - H2
-1. Install H2 (https://www.h2database.com/html/download.html)
+1. Install [H2] (https://www.h2database.com/html/download.html)
 2. Create local H2 Database
 3. Create Table using the existing Script (SQL-init.txt)
 
 Server
-1. Install TomCat 9 (https://tomcat.apache.org/download-90.cgi)
+1. Install [TomCat 9] (https://tomcat.apache.org/download-90.cgi)
 2. Create Tomcat Server in Eclipse
 3. Import WAR File
 4. Change the references of the EintragDAO File to local H2 Database
