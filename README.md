@@ -7,8 +7,8 @@ Sport Cross-Platform Mobile App für Mobile Anwendungen
 3. Install [Flutter](https://flutter.dev/docs/get-started/install/windows) and add flutter to environment variables
 4. Install [Cordova](https://cordova.apache.org/) using ```npm install -g cordova```
 5. Install [Gradle](https://gradle.org/install/) and add gradle to environment variables
-6. Install Eclipse Enterprise Edition (Normal Edition doesn't support servers!)
-7. Install Android Studio or Text Editor of your choice
+6. Install [Eclipse Enterprise Edition](https://www.eclipse.org/downloads/packages/release/kepler/sr2/eclipse-ide-java-ee-developers) (Normal Edition doesn't support servers!)
+7. Install [Android Studio](https://developer.android.com/studio) or Text Editor of your choice
 
 ## Launching APP - Requirements - In Construction
 Database - H2
