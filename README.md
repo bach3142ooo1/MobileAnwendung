@@ -40,4 +40,4 @@ Server
 - Ensure that Android SDK Version matches Gradle Version
 - Ensure that you're running TomCat version 9
 - Eclipse Enterprise Edition doesn't support Java Version 8
-- Gradle doesn't support Java 16 - Make sure you're running Java 8 or 11!
+- Gradle doesn't support Java 16 - Make sure you're running Java 8 or 11! (can be defined using the environment variables)
