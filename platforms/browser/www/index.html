@@ -18,9 +18,9 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <!--
+  <head>
+    <meta charset="utf-8" />
+    <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
             https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
         Some notes:
@@ -29,144 +29,142 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval' 'unsafe-dynamic'; style-src 'self' 'unsafe-inline'; media-src *; connect-src * data: blob: 'unsafe-inline'>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <script src="cordova.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Sportana</title>
-    </head>
-    <body>
-
-        
-        <div class="wrapper">
-            
-            <div class="headerbar">
-                
-                <div class="iconleft">
-                    <img src="">
-                </div>
-                
-                <div class="heading">
-                    <h1>Veranstaltung hinzufügen</h1>
-                </div>
-            </div>
-            
-            <div class="content">
-                
-                <div>
-                    <label for="name" style="color: black;">
-                    Name der Veranstaltung: <br>
-                    
-                    <input type="text" name="name" value="" id="name">
-
-                    </label>
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for="Datum" style="color: black;">
-                    Datum der Veranstaltung: <br>
-                    
-                    <input type="date" name="Datum" value="" id="Datum">
-
-                    </label>
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for="time" style="color: black;">
-                        Uhrzeit:<br>
-                    <div>
-                        <input id="beginAt" type="time" name="uhrzeit" value="" >
-                        <p style="display: inline;">bis </p>
-                        <input id="endAt" type="time" name="uhrzeit" value="">
-                    </div>
-                                        
-                    </label>      
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for="grad" style="color: black;">
-                        Schwierigkeitsgrad:<br>
-                    
-                    <select name="grad" id="grad">
-                    
-                        <option value="0">Leicht</option>
-                        <option value="1">Mittel</option>
-                        <option value="2">Schwer</option>
-                        
-                    </select>
-                    
-                    </label>      
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for=anzahl style="color: black;">
-                            Teilnehmeranzahl:<br>
-                        <input id="anzahl" type="number" min="1" max="300" step="1" value="0">
-                    </label>
-                </div>
-
-                <div style="margin-top: 20px;">
-                    <label for=anzahl style="color: black;">
-                            Ziel:<br>
-                        <input id="ziel" type="text">
-                    </label>
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for="beschreibung" style="color: black;">
-                        Beschreibung:<br>
-                        
-                    <textarea rows="5" name="beschreibung" id="beschreibung"></textarea>
-                    
-                    </label>      
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <label for="homepage" style="color: black;">Zoom Link:<br>
-                        <input type="url" id="link" name="link">
-                    </label>
-                </div>
-                
-                <div class="buttondiv">
-                    <button id="b1">Veranstaltung anlegen</button>
-                     <button id="b2">Zum Kalender hinzufügen</button>
-                </div>
-                
-            </div>
-            
-            <div class="bottombarwrapper">
-                <div class="bottombar">
-                
-                    <div style="text-align: center;">
-                        <img src="img/hantel.png" style="height: 30px; width: 30px;">
-                        <p>Kurse</p>       
-                    </div>
-                
-                    <div style="text-align: center;">
-                        <img src="img/kalender.png" style="height: 30px; width: 30px;">
-                        <p>Kalender</p>       
-                    </div>
-                
-                    <div style="text-align: center;">
-                        <img src="img/cam.png" style="height: 30px; width: 30px;">
-                        <p>Zoom</p>       
-                    </div>
-                
-                    <div style="text-align: center;">
-                        <img src="img/person.png" style="height: 30px; width: 30px;">
-                        <p>Konto</p>       
-                    </div>
-                </div>
-            </div>
-            
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:
+    blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'
+    'unsafe-dynamic'; style-src 'self' 'unsafe-inline'; media-src *; connect-src
+    * data: blob: 'unsafe-inline'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="cordova.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Sportana</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="headerbar">
+        <div class="iconleft">
+          <img src="" />
         </div>
-        
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+
+        <div class="heading">
+          <h1>Veranstaltung hinzufügen</h1>
+        </div>
+      </div>
+
+      <div class="content">
+        <div>
+          <label for="name" style="color: black">
+            Name der Veranstaltung: <br />
+
+            <input type="text" name="name" value="" id="name" />
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="Datum" style="color: black">
+            Datum der Veranstaltung: <br />
+
+            <input type="date" name="Datum" value="" id="Datum" />
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="time" style="color: black">
+            Uhrzeit:<br />
+            <div>
+              <input id="beginAt" type="time" name="uhrzeit" value="" />
+              <p style="display: inline">bis</p>
+              <input id="endAt" type="time" name="uhrzeit" value="" />
+            </div>
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="grad" style="color: black">
+            Schwierigkeitsgrad:<br />
+
+            <select name="grad" id="grad">
+              <option value="0">Leicht</option>
+              <option value="1">Mittel</option>
+              <option value="2">Schwer</option>
+            </select>
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="anzahl" style="color: black">
+            Teilnehmeranzahl:<br />
+            <input
+              id="anzahl"
+              type="number"
+              min="1"
+              max="300"
+              step="1"
+              value="0"
+            />
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="anzahl" style="color: black">
+            Ziel:<br />
+            <input id="ziel" type="text" />
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="beschreibung" style="color: black">
+            Beschreibung:<br />
+
+            <textarea rows="5" name="beschreibung" id="beschreibung"></textarea>
+          </label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <label for="homepage" style="color: black"
+            >Zoom Link:<br />
+            <input type="url" id="link" name="link" />
+          </label>
+        </div>
+
+        <div class="buttondiv">
+          <button id="b1">Veranstaltung anlegen</button>
+          <button id="b2">Zum Kalender hinzufügen</button>
+        </div>
+      </div>
+
+      <div class="bottombarwrapper">
+        <div class="bottombar">
+          <div style="text-align: center">
+            <img src="img/hantel.png" style="height: 30px; width: 30px" />
+            <p>Kurse</p>
+          </div>
+
+          <div style="text-align: center">
+            <img src="img/kalender.png" style="height: 30px; width: 30px" />
+            <p>Kalender</p>
+          </div>
+
+          <div style="text-align: center">
+            <img src="img/cam.png" style="height: 30px; width: 30px" />
+            <p>Zoom</p>
+          </div>
+
+          <div style="text-align: center">
+            <img src="img/person.png" style="height: 30px; width: 30px" />
+            <p>Konto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/index.js"></script>
+  </body>
 </html>

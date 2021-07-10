@@ -15,6 +15,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.MyFirstApp"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.example.MyFirstApp"
     }
   },
   "dependent_plugins": {

@@ -19,6 +19,7 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
+
 document.addEventListener('deviceready', onDeviceReady, false);
 req = xhttp = new XMLHttpRequest();
 function onDeviceReady() {
@@ -28,8 +29,10 @@ function onDeviceReady() {
     document.getElementById('deviceready').classList.add('ready');
 }
 
+// Clickereignis für die Taste mit dem ID "b2" definieren (Die Veranstaltung in lokalen Kalender speichern)
+document.getElementById("b2").onclick = function () {
 
-document.getElementById("b2").onclick = function (){
+    // Daten aus den Eingabenfelder holen
     var title = document.getElementById("name").value;
     var date = document.getElementById("Datum").value;
     var beginAt = document.getElementById("beginAt").value;
@@ -37,21 +40,23 @@ document.getElementById("b2").onclick = function (){
     var eventLocation = document.getElementById("link").value;
     var beschreibung = document.getElementById("beschreibung").value;
 
-    var startTime = new Date(date + " " + beginAt); 
+    var startTime = new Date(date + " " + beginAt);
     var endTime = new Date(date + " " + endAt);
 
-    var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-    var error = function(message) { alert("Error: " + message); };
-    
-    window.plugins.calendar.createEventInteractively(title,eventLocation,beschreibung,startTime,endTime,success,error);
+    // Funktionen für Erfolg und Fehlschlag der Speicherung in lokalen Kalender definieren
+    var success = function (message) { alert("Success: " + JSON.stringify(message)); };
+    var error = function (message) { alert("Error: " + message); };
+
+    window.plugins.calendar.createEventInteractively(title, eventLocation, beschreibung, startTime, endTime, success, error);
 }
 
 
 
 
+// Clickereignis für die Taste mit dem ID "b1" definieren (Die Veranstaltung in der Datenbank anlegen)
+document.getElementById("b1").onclick = function () {
 
-document.getElementById("b1").onclick = function (){
-    
+    // Daten aus den Eingabenfelder holen
     var title = document.getElementById("name").value;
     var teilnehmeranzahl = document.getElementById("anzahl").value;
     var beginAt = document.getElementById("beginAt").value;
@@ -62,43 +67,40 @@ document.getElementById("b1").onclick = function (){
     var zoomlink = document.getElementById("link").value;
     var ziel = document.getElementById("ziel").value;
     var benutzerId = "52257ef3-a9d8-464f-afd8-1f2d0d484ff6";
-    console.log(benutzerId);
-    
-    var url ='http://10.0.2.2:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
-                'benutzerId=' + benutzerId +
-                '&titel=' +title +
-                '&teilnehmeranzahl=' + teilnehmeranzahl +
-                '&uhrzeit=' + beginAt + "-" + endAt +
-                '&datum=' +datum +
-                '&stufe=' + stufe +
-                '&beschreibung=' + beschreibung +
-                '&ziel=' + ziel +
-                '&zoom_link=' + zoomlink;
-    req.open('POST',url,true);
-    req.onreadystatechange = () => {
-        alert(req.status);
+
+    // Request URL
+    var platform = device.platform;
+    var header = "";
+    if (platform != "Android") {
+        header = "localhost";
+    } else {
+        header = "10.0.2.2";
     }
+
+    var url = 'http://'+ header +':8081/Weblexikon_Server/VeranstaltungAnlegen?' +
+        'benutzerId=' + benutzerId +
+        '&titel=' + title +
+        '&teilnehmeranzahl=' + teilnehmeranzahl +
+        '&uhrzeit=' + beginAt + "-" + endAt +
+        '&datum=' + datum +
+        '&stufe=' + stufe +
+        '&beschreibung=' + beschreibung +
+        '&ziel=' + ziel +
+        '&zoom_link=' + zoomlink;
+    console.log(url);
+    req.open('GET', url, true);
     req.send(null);
 
-    $.ajax({
-        type: 'POST',
-  		url: 'http://localhost:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
-          'benutzerId=' + benutzerId +
-          '&titel=' +title +
-          '&teilnehmeranzahl=' + teilnehmeranzahl +
-          '&uhrzeit=' + beginAt + "-" + endAt +
-          '&datum=' +datum +
-          '&stufe=' + stufe +
-          '&beschreibung=' + beschreibung +
-          '&ziel=' + ziel +
-          '&zoom_link=' + zoomlink,
-        dataType: "jsonp",
-        crossDomain: true,
-  		success: function(data) {
-   			alert(data);
-  		},  
-			
-    });
-    
+    req.onreadystatechange = () => {
+        // Reaktionen für Erfolg und Fehlschlag der Speicherung in der Datenbank definieren
+        if (req.readyState == 4 && req.status == 200) {
+            alert("Success")
+        } else if (req.readyState == 4 && req.status != 200) {
+            alert("Not Success");
+        }
+    }
+
+
+
 }
 
