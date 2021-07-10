@@ -142,7 +142,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
               ElevatedButton(
                 child: Text(
                   "Anlegen",
-                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 onPressed: () {
                   speichernVeranstaltung();
@@ -151,7 +151,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
               ElevatedButton(
                 child:Text(
                   "Lokal speichern",
-                  style: TextStyle(color: Colors.blue, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                   onPressed: () async{
                     DateTime startDate = DateTime.parse(datum.toString().substring(0,10) + " " +_uhrzeitController.text.substring(0,5));
