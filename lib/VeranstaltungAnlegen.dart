@@ -7,9 +7,11 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:add_2_calendar/add_2_calendar.dart';
 
+// Veranstaltung Anlegen form definieren
 class VeranstaltungAnlegen extends StatefulWidget {
   DateTime _datum;
 
+  // Konstruktor
   VeranstaltungAnlegen(DateTime date) {
     this._datum = date;
   }
@@ -18,7 +20,7 @@ class VeranstaltungAnlegen extends StatefulWidget {
   _VeranstaltungAnlegenState createState() =>
       _VeranstaltungAnlegenState(_datum);
 }
-
+// Veranstaltatung anlegen Screen erstellen
 class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
   _VeranstaltungAnlegenState(DateTime datum)
   {
@@ -27,6 +29,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
 
   DateTime datum;
 
+  // Controller definieren, um auf die Texteingaben zuzugreifen
   final _titelController = TextEditingController();
   final _teilnehmerAnzahlController = TextEditingController();
   final _uhrzeitController = TextEditingController();
@@ -35,6 +38,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
   final _zielController = TextEditingController();
   final _zoomLinkController = TextEditingController();
 
+  // Dispose Methoden, um Memory Leaks zu verhindern
   @override
   void dispose() {
     _titelController.dispose();
@@ -46,8 +50,10 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
     super.dispose();
   }
 
+  // Map für den Schwierigkeitsgrad
   Map<int, String> map = {0: "Leicht", 1: "Mittel", 2: "Schwierig"};
 
+  // Build Methode für Textbox für Teilnehmeranzahl
   _buildTeilnehmerAnzahl() {
     return TextField(
         decoration: InputDecoration(
@@ -57,6 +63,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // Build Methode für Textbox für Titel
   _buildTitel() {
     return TextField(
         decoration: InputDecoration(
@@ -66,6 +73,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // Build Methode für Textbox für Uhrzeit
   _buildUhrzeit() {
     return TextField(
         decoration: InputDecoration(
@@ -75,6 +83,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // Build Methode für Textbox für Schwierigkeitsgrad
   _buildStufe() {
     return DropdownButton(
       value: _stufe,
@@ -94,6 +103,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
     );
   }
 
+  // Build Methode für Textbox für Beschreibung
   _buildBeschreibung() {
     return TextField(
         decoration: InputDecoration(
@@ -103,6 +113,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // Build Methode für Textbox für Ziel der Veranstaltung
   _buildZiel() {
     return TextField(
         decoration: InputDecoration(
@@ -112,6 +123,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // Build Methode für Textbox für Zoom-Link
   _buildZoomLink() {
     return TextField(
         decoration: InputDecoration(
@@ -121,6 +133,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         enabled: true);
   }
 
+  // UI Erstellen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +167,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                   onPressed: () async{
+                    // Veranstaltung in den lokalen Kalender hinzufügen
                     DateTime startDate = DateTime.parse(datum.toString().substring(0,10) + " " +_uhrzeitController.text.substring(0,5));
                     DateTime endDate = DateTime.parse(datum.toString().substring(0,10) + " " +_uhrzeitController.text.substring(6,11));
                     Event event = Event(
@@ -173,8 +187,9 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
 
 
 
-
+  // Veranstaltung Speichern Methode
   speichernVeranstaltung() {
+    // Validierung der Eingaben
     int teilnehmerAnzahl = int.tryParse(_teilnehmerAnzahlController.text) ?? 0;
     if (teilnehmerAnzahl == 0) {
       dialogAnzeigen("Validierung","Falscher Format der Teilnehmeranzahl");
@@ -191,6 +206,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
         zoomLink: _zoomLinkController.text,
         datum: datum,
       );
+      // Die Veranstaltung in die Datenbank hinzufügen
       _saveVeranstaltung(veranstaltung);
     }
 
@@ -211,14 +227,20 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
 
   Future<String> _saveVeranstaltung(Veranstaltung veranstaltung) async {
     String header;
+
+    // Wenn der Nutzer die Anwendung mit Browser läuft
     if(kIsWeb){
       header = "localhost";
     }
+
+    // Wenn der Nutzer die Anwendung mit dem Emulator läuft - Emulator unterstützt kein localhost
     else if(Platform.isAndroid){
       header = "10.0.2.2";
     }else{
       header = "localhost";
     }
+
+    // Request um Daten in Datenbank zu schicken
     var _response = await http.get(
         Uri.parse('http://$header:8081/Weblexikon_Server/VeranstaltungAnlegen?' +
             'benutzerId=52257ef3-a9d8-464f-afd8-1f2d0d484ff6&'
@@ -239,6 +261,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
             '&zoom_link=' +
             veranstaltung.zoomLink));
 
+    // Überprüfung ob der Request erfolgreich/fehlgeschlagen ist
     if (_response.statusCode == 200) {
       dialogAnzeigen("Status", "Erfolgreich angelegt");
       return _response.body;
@@ -247,6 +270,7 @@ class _VeranstaltungAnlegenState extends State<VeranstaltungAnlegen> {
     }
   }
 
+  // Eingegebene Uhzeit validieren
   bool validateUhrzeit(String uhrzeit) {
     var regexUhrzeit = new RegExp(r"\d\d:\d\d-\d\d:\d\d");
     if (!regexUhrzeit.hasMatch(uhrzeit)) return false;
