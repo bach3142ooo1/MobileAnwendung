@@ -18,7 +18,7 @@ Database - H2
 
 Server
 1. Create Tomcat Server in Eclipse
-2. Import WAR File
+2. Import WAR File (Weblexikon_Server.war)
 3. Change the references of the EintragDAO File to local H2 Database
 4. (Optional) Setup Tomcat Ports to avoid getting used ports error
 5. Launch the imported WAR as Tomcat Server in Eclipse
